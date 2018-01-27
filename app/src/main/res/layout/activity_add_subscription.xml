@@ -7,7 +7,7 @@
     tools:context="com.example.tlafranc.assignment1.AddSubscription">
 
     <TextView
-        android:id="@+id/Subscription"
+        android:id="@+id/add_sub_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/Name"
+        android:id="@+id/add_sub_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -30,6 +30,7 @@
         android:layout_marginTop="80dp"
         android:hint="@string/Name"
         android:textAlignment="viewStart"
+        android:gravity="start"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.312"
@@ -37,7 +38,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/Date"
+        android:id="@+id/add_sub_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -48,10 +49,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Name" />
+        app:layout_constraintTop_toBottomOf="@+id/add_sub_name" />
 
     <EditText
-        android:id="@+id/Monthly_Charge"
+        android:id="@+id/add_sub_charge"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -61,10 +62,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Date" />
+        app:layout_constraintTop_toBottomOf="@+id/add_sub_date" />
 
     <EditText
-        android:id="@+id/Comment"
+        android:id="@+id/add_sub_comment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -74,10 +75,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Monthly_Charge" />
+        app:layout_constraintTop_toBottomOf="@+id/add_sub_charge" />
 
     <Button
-        android:id="@+id/SubComplete"
+        android:id="@+id/add_complete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
@@ -88,6 +89,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Comment"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/add_sub_comment"
+        app:layout_constraintVertical_bias="1.0"
+        android:onClick="onAddClick"/>
 </android.support.constraint.ConstraintLayout>

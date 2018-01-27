@@ -7,21 +7,19 @@
     tools:context="com.example.tlafranc.assignment1.MainActivity">
 
     <TextView
-        android:id="@+id/Title"
+        android:id="@+id/main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_margin="16dp"
         android:text="@string/Title"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/SubLayout"
+        app:layout_constraintBottom_toTopOf="@+id/main_sub_list"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/SubLayout"
+        android:id="@+id/main_sub_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="64dp"
@@ -35,7 +33,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <ListView
-            android:id="@+id/SubList"
+            android:id="@+id/SubListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -43,7 +41,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/AddSub"
+        android:id="@+id/main_add_sub"
         android:layout_width="201dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -52,6 +50,7 @@
         android:text="@string/Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onAddSubscriptionClick"/>
 
 </android.support.constraint.ConstraintLayout>

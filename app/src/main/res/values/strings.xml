@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Assignment1</string>
+    <string name="app_name">tlafranc-SubBook</string>
     <string name="Title">Subscriptions</string>
     <string name="Add">Add Subscription</string>
     <string name="SubAdd">New Subscription</string>

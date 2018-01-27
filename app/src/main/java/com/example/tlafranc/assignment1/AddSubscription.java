@@ -1,44 +1,38 @@
 package com.example.tlafranc.assignment1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AddSubscription extends AppCompatActivity {
+import java.util.ArrayList;
 
-    private EditText nameText;
-    private EditText dateText;
-    private EditText chargeText;
-    private EditText commentText;
+public class AddSubscription extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_subscription);
+    }
 
-        nameText = (EditText) findViewById(R.id.Name);
-        dateText = (EditText) findViewById(R.id.Date);
-        chargeText = (EditText) findViewById(R.id.Monthly_Charge);
-        commentText = (EditText) findViewById(R.id.Comment);
+    public void onAddClick (View view) {
+        EditText nameText = (EditText) findViewById(R.id.add_sub_name);
+        EditText dateText = (EditText) findViewById(R.id.add_sub_date);
+        EditText chargeText = (EditText) findViewById(R.id.add_sub_charge);
+        EditText commentText = (EditText) findViewById(R.id.add_sub_comment);
 
-        Button addButton = (Button) findViewById(R.id.SubComplete);
+        String name = nameText.getText().toString();
+        String date = dateText.getText().toString();
+        String charge = chargeText.getText().toString();
+        String comment = commentText.getText().toString();
 
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setResult(RESULT_OK);
-                String name = nameText.getText().toString();
-                String date = dateText.getText().toString();
-                String charge = chargeText.getText().toString();
-                String comment = commentText.getText().toString();
+        String [] subInformation = {name, date, charge, comment};
 
-
-
-            }
-        });
-
-
+        Intent returnSub = new Intent();
+        returnSub.putExtra("SubInformation", subInformation);
+        setResult(RESULT_OK, returnSub);
+        finish();
     }
 }
