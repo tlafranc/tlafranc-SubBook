@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Assignment1</string>
+    <string name="Title">Subscriptions</string>
+    <string name="Add">Add Subscription</string>
+    <string name="SubAdd">New Subscription</string>
+    <string name="Name">Name</string>
+    <string name="Date">Date Started (YYYY-MM-DD)</string>
+    <string name="Charge">Monthly Charge (CDN$)</string>
+    <string name="Comment">Comment (Optional)</string>
+    <string name="SubComplete">Add</string>
 </resources>
