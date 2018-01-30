@@ -8,4 +8,9 @@
     <string name="Charge">Monthly Charge (CDN$)</string>
     <string name="Comment">Comment (Optional)</string>
     <string name="SubComplete">Add</string>
+    <string name="Summary">Summary</string>
+    <string name="list_view_title">This is the title</string>
+    <string name="list_view_date">This is the date</string>
+    <string name="list_view_charge">This is the charge</string>
+    <string name="Eddel_title">Edit/Delete Subscription</string>
 </resources>
