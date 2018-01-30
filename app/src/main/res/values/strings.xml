@@ -13,4 +13,6 @@
     <string name="list_view_date">This is the date</string>
     <string name="list_view_charge">This is the charge</string>
     <string name="Eddel_title">Edit/Delete Subscription</string>
+    <string name="eddel_edit">Edit</string>
+    <string name="eddel_delete">Delete</string>
 </resources>

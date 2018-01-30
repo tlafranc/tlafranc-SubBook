@@ -1,13 +1,16 @@
 package com.example.tlafranc.assignment1;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.jar.Attributes;
 
 /**
  * Created by Thomas on 2018-01-26.
  */
 
-class Subscription {
+class Subscription implements Serializable{
     private String name;
     private String date;
     private String charge;
@@ -51,6 +54,21 @@ class Subscription {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    /*
+    public ArrayList<String> returnStringList() {
+        ArrayList<String> retList = new ArrayList<String>();
+        retList.add(this.name);
+        retList.add(this.date);
+        retList.add(this.charge);
+        retList.add(this.comment);
+        return retList;
+    }
+
+    public Subscription returnSubscription(ArrayList<String> subList) {
+        return Subscription()
+    }
+    */
 
     @Override
     public String toString(){
