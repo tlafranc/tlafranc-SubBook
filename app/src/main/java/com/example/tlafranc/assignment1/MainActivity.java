@@ -18,13 +18,11 @@ import com.google.gson.reflect.TypeToken;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String FILENAME = "newfile.sav";
     private ListView sublist;
 
     private Context mainContext = this;
     private ArrayList<Subscription> subscriptionList;
     private ArrayAdapter<Subscription> adapter;
-    private double totalCharge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sublist = (ListView) findViewById(R.id.main_sub_list);
+        subscriptionList = new ArrayList<Subscription>();
+        adapter = new ArrayAdapter<Subscription>(this, R.layout.list_item, subscriptionList);
+        sublist.setAdapter(adapter);
 
         sublist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -55,36 +56,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
-        subscriptionList = new ArrayList<Subscription>();
-        Subscription testSub = new Subscription("Netflix", "1997-10-06", "10", "Comment");
-        subscriptionList.add(testSub);
-        adapter = new ArrayAdapter<Subscription>(this, R.layout.list_item, subscriptionList);
-        sublist.setAdapter(adapter);
-
-
-        Subscription otherSub = new Subscription("Thomas", "tehje", "10", "fjae");
-        subscriptionList.add(otherSub);
-        adapter.notifyDataSetChanged();
         setTotalCharge();
     }
 
-
-    /** Called when the user taps the "Add a Subscription" button */
-    public void onAddSubscriptionClick (View view) {
-        System.out.println(subscriptionList);
-        Subscription otherSub = new Subscription("FJSKHFJKSFHJKS", "tehje", "10", "fjae");
-        subscriptionList.add(otherSub);
-        adapter.notifyDataSetChanged();
-        setTotalCharge();
-
-        System.out.println(subscriptionList);
-
-        Intent addSubIntent = new Intent(this, AddSubscription.class);
+    public void onAddSubscriptionClick(View view) {
+        Intent addSubIntent = new Intent(this, AddSubscriptionActivity.class);
         final int result = 1;
-
         startActivityForResult(addSubIntent, result);
     }
 
+    /*
+    /** Called when the user taps the "Add a Subscription" button
+    public void onAddSubscriptionClick (View view) {
+        Intent addSubIntent = new Intent(this, AddSubscriptionActivity.class);
+        final int result = 1;
+        startActivityForResult(addSubIntent, result);
+    }
+    */
 
     // https://stackoverflow.com/questions/5030565/multiple-onactivityresult-for-1-activity accessed on 2018-01-29
     @Override
@@ -92,15 +80,11 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case 1:
                 super.onActivityResult(requestCode, resultCode, data);
-                String [] subInfo = data.getStringArrayExtra("SubInformation");
-                Subscription newSub = new Subscription(subInfo[0], subInfo[1], subInfo[2], subInfo[3]);
+                Subscription newsub = (Subscription) data.getExtras().getSerializable("Subscription");
+
+                subscriptionList.add(newsub);
+                adapter.notifyDataSetChanged();
                 System.out.println(subscriptionList);
-                System.out.println(newSub);
-
-                //subscriptionList.add(newSub);
-                //adapter.notifyDataSetChanged();
-
-                //setTotalCharge();
                 break;
             case 2:
                 super.onActivityResult(requestCode, resultCode, data);
@@ -111,13 +95,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setTotalCharge() {
-        totalCharge = 0.00;
+        double totalCharge = 0.00;
         for (int i = 0; i < subscriptionList.size(); i++) {
             totalCharge += Double.parseDouble(subscriptionList.get(i).getCharge());
         }
         System.out.println("Total Charge is " + Double.toString(totalCharge));
-        TextView text = (TextView) findViewById(R.id.TotalCharge);
-        text.setText("Total Monthly Charge: $" + Double.toString(totalCharge));
+        TextView text = (TextView) findViewById(R.id.mainTotalCharge);
+        String output = String.format("%.2f", totalCharge);
+        text.setText("Total Monthly Charge: $" + output);
     }
-
 }

@@ -14,7 +14,6 @@
         android:text="@string/Title"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/main_sub_list"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,18 +36,20 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:text="@string/Summary"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/TotalCharge"
+        app:layout_constraintBottom_toTopOf="@+id/mainTotalCharge"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/TotalCharge"
+        android:id="@+id/mainTotalCharge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="29dp"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_weight="1"
         android:textColor="@android:color/black"
         android:textSize="18sp"
