@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:gravity="start"
         android:padding="10dp"
-        android:text="@string/Eddel_title"
+        android:text="@string/eddel_title"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="24sp"

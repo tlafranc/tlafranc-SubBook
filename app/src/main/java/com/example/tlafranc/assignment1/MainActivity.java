@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,12 +60,24 @@ public class MainActivity extends AppCompatActivity {
         subscriptionList.add(testSub);
         adapter = new ArrayAdapter<Subscription>(this, R.layout.list_item, subscriptionList);
         sublist.setAdapter(adapter);
+
+
+        Subscription otherSub = new Subscription("Thomas", "tehje", "10", "fjae");
+        subscriptionList.add(otherSub);
+        adapter.notifyDataSetChanged();
         setTotalCharge();
     }
 
 
     /** Called when the user taps the "Add a Subscription" button */
     public void onAddSubscriptionClick (View view) {
+        System.out.println(subscriptionList);
+        Subscription otherSub = new Subscription("FJSKHFJKSFHJKS", "tehje", "10", "fjae");
+        subscriptionList.add(otherSub);
+        adapter.notifyDataSetChanged();
+        setTotalCharge();
+
+        System.out.println(subscriptionList);
 
         Intent addSubIntent = new Intent(this, AddSubscription.class);
         final int result = 1;
@@ -79,9 +94,12 @@ public class MainActivity extends AppCompatActivity {
                 super.onActivityResult(requestCode, resultCode, data);
                 String [] subInfo = data.getStringArrayExtra("SubInformation");
                 Subscription newSub = new Subscription(subInfo[0], subInfo[1], subInfo[2], subInfo[3]);
-                subscriptionList.add(newSub);
-                adapter.notifyDataSetChanged();
                 System.out.println(subscriptionList);
+                System.out.println(newSub);
+
+                //subscriptionList.add(newSub);
+                //adapter.notifyDataSetChanged();
+
                 //setTotalCharge();
                 break;
             case 2:
