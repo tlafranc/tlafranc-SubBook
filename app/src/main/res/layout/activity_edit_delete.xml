@@ -7,7 +7,7 @@
     tools:context="com.example.tlafranc.assignment1.EditDeleteActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/eddel_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:gravity="start"
         android:padding="10dp"
-        android:text="@string/eddel_title"
+        android:text="@string/eddelTitle"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="24sp"
@@ -35,7 +35,8 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:hint="@string/name"
+        app:layout_constraintTop_toBottomOf="@+id/eddel_title" />
 
     <EditText
         android:id="@+id/eddel_date"
@@ -47,25 +48,11 @@
         android:padding="10dp"
         android:textColor="@android:color/black"
         android:textSize="24sp"
+        android:hint="@string/date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eddel_name" />
-
-    <EditText
-        android:id="@+id/eddel_comment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:padding="10dp"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eddel_charge" />
 
     <EditText
         android:id="@+id/eddel_charge"
@@ -77,10 +64,27 @@
         android:padding="10dp"
         android:textColor="@android:color/black"
         android:textSize="24sp"
+        android:hint="@string/charge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eddel_date" />
+
+    <EditText
+        android:id="@+id/eddel_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:hint="@string/comment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eddel_charge" />
 
     <Button
         android:id="@+id/eddel_edit"
@@ -91,7 +95,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:onClick="onEditClick"
-        android:text="@string/eddel_edit"
+        android:text="@string/eddelEdit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/eddel_delete"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +111,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:onClick="onDeleteClick"
-        android:text="@string/eddel_delete"
+        android:text="@string/eddelDelete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/eddel_edit"

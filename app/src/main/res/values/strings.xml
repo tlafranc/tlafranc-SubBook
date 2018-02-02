@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name">tlafranc-SubBook</string>
-    <string name="Title">Subscriptions</string>
-    <string name="Add">Add Subscription</string>
-    <string name="SubAdd">New Subscription</string>
-    <string name="Name">Name</string>
-    <string name="Date">Date Started (YYYY-MM-DD)</string>
-    <string name="Charge">Monthly Charge (CDN$)</string>
-    <string name="Comment">Comment (Optional)</string>
-    <string name="SubComplete">Add</string>
-    <string name="Summary">Summary</string>
+    <string name="mainTitle">Subscriptions</string>
+    <string name="mainAddSub">Add Subscription</string>
+    <string name="addsubTitle">New Subscription</string>
+    <string name="name">Name</string>
+    <string name="date">Date Started (YYYY-MM-DD)</string>
+    <string name="charge">Monthly Charge (CDN$)</string>
+    <string name="comment">Comment (Optional)</string>
+    <string name="addsubButton">Add</string>
+    <string name="mainSummary">Summary</string>
     <string name="list_view_title">This is the title</string>
     <string name="list_view_date">This is the date</string>
     <string name="list_view_charge">This is the charge</string>
-    <string name="eddel_title">Edit/Delete Subscription</string>
-    <string name="eddel_edit">Edit</string>
-    <string name="eddel_delete">Delete</string>
+    <string name="eddelTitle">Edit/Delete Subscription</string>
+    <string name="eddelEdit">Edit</string>
+    <string name="eddelDelete">Delete</string>
 </resources>

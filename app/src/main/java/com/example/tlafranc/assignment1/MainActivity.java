@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Subscription> subscriptionList;
     private ArrayAdapter<Subscription> adapter;
 
+    private Subscription modify_sub;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +44,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent edDelIntent = new Intent(mainContext, EditDeleteActivity.class);
                 final int result = 2;
 
-                System.out.println((Subscription) adapterView.getItemAtPosition(position));
-                Subscription eddel_sub = (Subscription) adapterView.getItemAtPosition(position);
-                edDelIntent.putExtra("subObj", eddel_sub);
+                modify_sub = (Subscription) adapterView.getItemAtPosition(position);
+                edDelIntent.putExtra("subObj", modify_sub);
 
                 startActivityForResult(edDelIntent, result);
             }
@@ -59,20 +60,12 @@ public class MainActivity extends AppCompatActivity {
         setTotalCharge();
     }
 
+    /** Called when the user taps the "Add a Subscription" button */
     public void onAddSubscriptionClick(View view) {
         Intent addSubIntent = new Intent(this, AddSubscriptionActivity.class);
         final int result = 1;
         startActivityForResult(addSubIntent, result);
     }
-
-    /*
-    /** Called when the user taps the "Add a Subscription" button
-    public void onAddSubscriptionClick (View view) {
-        Intent addSubIntent = new Intent(this, AddSubscriptionActivity.class);
-        final int result = 1;
-        startActivityForResult(addSubIntent, result);
-    }
-    */
 
     // https://stackoverflow.com/questions/5030565/multiple-onactivityresult-for-1-activity accessed on 2018-01-29
     @Override
@@ -88,8 +81,25 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 2:
                 super.onActivityResult(requestCode, resultCode, data);
-                int val = data.getIntExtra("eddelInformation", 0);
-
+                int val = data.getIntExtra("code", 0);
+                if (val == 0) {
+                    if (modify_sub == subscriptionList.get(0)) {
+                        System.out.println("SAME");
+                    }
+                    else {
+                        System.out.println("DIFFERENT");
+                    }
+                    subscriptionList.remove(modify_sub);
+                    System.out.println(subscriptionList);
+                } else {
+                    Subscription edited_sub = (Subscription) data.getExtras().getSerializable("editedsub");
+                    modify_sub.setName(edited_sub.getName());
+                    modify_sub.setDate(edited_sub.getDate());
+                    modify_sub.setCharge(edited_sub.getCharge());
+                    modify_sub.setComment(edited_sub.getComment());
+                    System.out.println(modify_sub);
+                }
+                break;
         }
 
     }
