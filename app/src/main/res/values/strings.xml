@@ -11,7 +11,7 @@
     <string name="mainSummary">Summary</string>
     <string name="list_view_title">This is the title</string>
     <string name="list_view_date">This is the date</string>
-    <string name="list_view_charge">This is the charge</string>
+    <string name="list_view_charge">10$</string>
     <string name="eddelTitle">Edit/Delete Subscription</string>
     <string name="eddelEdit">Edit</string>
     <string name="eddelDelete">Delete</string>

@@ -6,32 +6,36 @@
     android:padding="10dp"
     >
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_weight="1">
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/listViewName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textColor="@android:color/black"
             android:text="@string/list_view_title"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/listViewDate"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textColor="@android:color/black"
             android:text="@string/list_view_date"
             />
     </LinearLayout>
 
     <TextView
+        android:id="@+id/listViewCharge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:textSize="18sp"
+        android:text="10$"
+        android:textAlignment="viewEnd"
+        android:layout_gravity="end"
         android:textColor="@android:color/black"
-        android:text="@string/list_view_charge"
-        />
+        android:textSize="28sp" />
 
 </LinearLayout>

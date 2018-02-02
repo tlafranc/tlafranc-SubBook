@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         sublist = (ListView) findViewById(R.id.main_sub_list);
         subscriptionList = new ArrayList<Subscription>();
-        adapter = new ArrayAdapter<Subscription>(this, R.layout.list_item, subscriptionList);
+        adapter = new SubscriptionAdapter(this, subscriptionList);
         sublist.setAdapter(adapter);
 
         sublist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
