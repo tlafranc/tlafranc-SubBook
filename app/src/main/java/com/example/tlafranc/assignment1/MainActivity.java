@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             Gson gson = new Gson();
 
-            //Taken https://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
+            // Taken https://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
             // 2018-01-24
 
             Type listType = new TypeToken<ArrayList<Subscription>>(){}.getType();

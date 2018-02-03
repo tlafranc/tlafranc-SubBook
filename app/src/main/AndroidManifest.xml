@@ -16,8 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddSubscriptionActivity" />
-        <activity android:name=".EditDeleteActivity"></activity>
+        <activity android:name=".AddSubscriptionActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity android:name=".EditDeleteActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -31,6 +31,7 @@ public class EditDeleteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_delete);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         edit = (Button) findViewById(R.id.eddel_edit);
 

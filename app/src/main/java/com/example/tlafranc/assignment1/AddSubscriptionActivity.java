@@ -31,6 +31,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_subscription);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         add = (Button) findViewById(R.id.add_complete_button);
 
