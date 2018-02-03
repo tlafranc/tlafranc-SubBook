@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
 
     public SubscriptionAdapter(@NonNull Context context, ArrayList<Subscription> subscriptionList) {
-        super(context, R.layout.attempted_list_item, subscriptionList);
+        super(context, R.layout.list_item, subscriptionList);
 
     }
 
@@ -26,7 +26,7 @@ public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        View view = inflater.inflate(R.layout.attempted_list_item, parent, false);
+        View view = inflater.inflate(R.layout.list_item, parent, false);
 
         Subscription sub = getItem(position);
         TextView nameText = (TextView) view.findViewById(R.id.listViewName);
@@ -36,8 +36,11 @@ public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
         dateText.setText(sub.getDate());
 
         TextView chargeText = (TextView) view.findViewById(R.id.listViewCharge);
-        String output = "$" + sub.getCharge();
+        String output = String.format("$%.2f", Double.parseDouble(sub.getCharge()));
         chargeText.setText(output);
+
+        TextView commentText = (TextView) view.findViewById(R.id.listViewComment);
+        commentText.setText(sub.getComment());
 
         return view;
     }

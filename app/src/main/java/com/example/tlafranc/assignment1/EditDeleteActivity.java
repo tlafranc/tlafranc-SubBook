@@ -3,10 +3,13 @@ package com.example.tlafranc.assignment1;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -36,6 +39,11 @@ public class EditDeleteActivity extends AppCompatActivity {
         chargeText = (EditText) findViewById(R.id.eddel_charge);
         commentText = (EditText) findViewById(R.id.eddel_comment);
 
+        nameText.addTextChangedListener(textWatcher);
+        dateText.addTextChangedListener(textWatcher);
+        chargeText.addTextChangedListener(textWatcher);
+        commentText.addTextChangedListener(textWatcher);
+
         // https://stackoverflow.com/questions/17453297/passing-arraylist-of-string-arrays-from-one-activity-to-another-in-android accessed on 2018-01-29
 
         Intent eddelIntent = getIntent();
@@ -60,7 +68,6 @@ public class EditDeleteActivity extends AppCompatActivity {
         sub.setCharge(charge);
         sub.setComment(comment);
 
-
         Intent returnSub = new Intent();
         returnSub.putExtra("code", 1);
         returnSub.putExtra("editedsub", sub);
@@ -73,5 +80,35 @@ public class EditDeleteActivity extends AppCompatActivity {
         returnSub.putExtra("code", 0);
         setResult(RESULT_OK, returnSub);
         finish();
+    }
+
+    // https://stackoverflow.com/questions/20682865/disable-button-when-edit-text-fields-empty accessed on 2018-01-30
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            checkFieldsForEmptyValues();
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+        }
+    };
+
+    private void checkFieldsForEmptyValues() {
+        name = nameText.getText().toString();
+        date = dateText.getText().toString();
+        charge = chargeText.getText().toString();
+        comment = commentText.getText().toString();
+
+        if (name.equals("") || date.equals("") || charge.equals("")) {
+            edit.setEnabled(false);
+        } else {
+            edit.setEnabled(true);
+        }
     }
 }

@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
         Intent addSubIntent = new Intent(this, AddSubscriptionActivity.class);
         final int result = 1;
         startActivityForResult(addSubIntent, result);
-        saveInFile();
     }
 
     // https://stackoverflow.com/questions/5030565/multiple-onactivityresult-for-1-activity accessed on 2018-01-29
@@ -141,7 +140,8 @@ public class MainActivity extends AppCompatActivity {
                 int val = data.getIntExtra("code", 0);
                 if (val == 0) {
                     subscriptionList.remove(modify_sub);
-                } else {
+                }
+                else {
                     Subscription edited_sub = (Subscription) data.getExtras().getSerializable("editedsub");
                     modify_sub.setName(edited_sub.getName());
                     modify_sub.setDate(edited_sub.getDate());
