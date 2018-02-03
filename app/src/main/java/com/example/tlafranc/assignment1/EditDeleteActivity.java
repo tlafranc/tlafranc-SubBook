@@ -6,12 +6,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import java.util.ArrayList;
+import java.util.regex.*;
 
 public class EditDeleteActivity extends AppCompatActivity {
 
@@ -40,11 +37,6 @@ public class EditDeleteActivity extends AppCompatActivity {
         chargeText = (EditText) findViewById(R.id.eddel_charge);
         commentText = (EditText) findViewById(R.id.eddel_comment);
 
-        nameText.addTextChangedListener(textWatcher);
-        dateText.addTextChangedListener(textWatcher);
-        chargeText.addTextChangedListener(textWatcher);
-        commentText.addTextChangedListener(textWatcher);
-
         // https://stackoverflow.com/questions/17453297/passing-arraylist-of-string-arrays-from-one-activity-to-another-in-android accessed on 2018-01-29
 
         Intent eddelIntent = getIntent();
@@ -55,10 +47,14 @@ public class EditDeleteActivity extends AppCompatActivity {
         dateText.setText(sub.getDate());
         chargeText.setText(sub.getCharge());
         commentText.setText(sub.getComment());
+
+        nameText.addTextChangedListener(textWatcher);
+        dateText.addTextChangedListener(textWatcher);
+        chargeText.addTextChangedListener(textWatcher);
+        commentText.addTextChangedListener(textWatcher);
     }
 
     public void onEditClick (View view) {
-
         name = nameText.getText().toString();
         date = dateText.getText().toString();
         charge = chargeText.getText().toString();
@@ -106,8 +102,23 @@ public class EditDeleteActivity extends AppCompatActivity {
         charge = chargeText.getText().toString();
         comment = commentText.getText().toString();
 
-        if (name.equals("") || date.equals("") || charge.equals("")) {
+        Pattern datePattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+        Matcher properDate = datePattern.matcher(date);
+
+        if (name.equals("") || date.equals("") || charge.equals("") || !properDate.matches()) {
             edit.setEnabled(false);
+            if (name.equals("")) {
+                nameText.setError("Name cannot be left blank");
+            }
+            if (!properDate.matches()) {
+                dateText.setError("Date must be in form YYYY-MM-DD");
+            }
+            if (date.equals("")) {
+                dateText.setError("Date cannot be left blank");
+            }
+            if (charge.equals("")) {
+                chargeText.setError("Charge cannot be left blank");
+            }
         } else {
             edit.setEnabled(true);
         }
