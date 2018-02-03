@@ -9,25 +9,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String FILENAME = "tlafranc-save.sav";
+    private FileStorage appFile;
     private ListView sublist;
 
     private Context mainContext = this;
@@ -40,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadFromFile();
+        appFile = new FileStorage(subscriptionList, mainContext);
+        subscriptionList = appFile.loadFromFile();
 
         sublist = (ListView) findViewById(R.id.main_sub_list);
 
@@ -65,55 +53,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
-        loadFromFile();
+        subscriptionList =  appFile.loadFromFile();
         adapter = new SubscriptionAdapter(this, subscriptionList);
         sublist.setAdapter(adapter);
         setTotalCharge();
-    }
-
-    private void loadFromFile() {
-
-        try {
-            FileInputStream fis = openFileInput(FILENAME);
-            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-            Gson gson = new Gson();
-
-            // Taken https://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
-            // 2018-01-24
-
-            Type listType = new TypeToken<ArrayList<Subscription>>(){}.getType();
-
-            subscriptionList = gson.fromJson(in, listType);
-
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-
-            subscriptionList = new ArrayList<Subscription>();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    private void saveInFile() {
-        try {
-            FileOutputStream fos = openFileOutput(FILENAME,
-                    Context.MODE_PRIVATE);
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-
-            Gson gson = new Gson();
-
-            gson.toJson(subscriptionList, out);
-
-            out.flush();
-
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
     }
 
     /** Called when the user taps the "Add a Subscription" button */
@@ -133,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
                 subscriptionList.add(newsub);
                 adapter.notifyDataSetChanged();
-                saveInFile();
+                appFile.saveInFile(subscriptionList);
                 break;
             case 2:
                 super.onActivityResult(requestCode, resultCode, data);
@@ -149,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     modify_sub.setComment(edited_sub.getComment());
                 }
                 adapter.notifyDataSetChanged();
-                saveInFile();
+                appFile.saveInFile(subscriptionList);
                 break;
         }
 

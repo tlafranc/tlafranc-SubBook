@@ -5,23 +5,28 @@
     build-mode="COLD"
     density="420dpi"
     format="10"
+    ir-eligibility="FIELD_TYPE_CHANGE"
     plugin-version="3.0.1"
-    timestamp="1517688889635"
+    timestamp="1517690118094"
     token="3941638919088380239"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="193" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="77" />
     <task
         name="verifier"
-        duration="0" />
+        duration="10" />
+
+    <artifact
+        location="C:\Users\Thomas Lafrance\Documents\AndroidStudioProjects\tlafranc-SubBook\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+        type="SPLIT" />
 
     <build
         build-mode="FULL"
@@ -78,16 +83,12 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1517688366274"
+        ir-eligibility="FIELD_TYPE_CHANGE"
+        timestamp="1517690118094"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\Thomas Lafrance\Documents\AndroidStudioProjects\tlafranc-SubBook\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
     </build>
-    <build
-        build-mode="COLD"
-        timestamp="1517688889635"
-        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>
