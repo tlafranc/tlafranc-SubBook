@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Context mainContext = this;
     private ArrayList<Subscription> subscriptionList;
-    private ArrayAdapter<Subscription> adapter;
+    private SubscriptionAdapter adapter;
 
-    private Subscription modify_sub;
+    private Subscription modifySub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent edDelIntent = new Intent(mainContext, EditDeleteActivity.class);
                 final int result = 2;
 
-                modify_sub = (Subscription) adapterView.getItemAtPosition(position);
-                edDelIntent.putExtra("subObj", modify_sub);
+                modifySub = (Subscription) adapterView.getItemAtPosition(position);
+                edDelIntent.putExtra("subObj", modifySub);
 
                 startActivityForResult(edDelIntent, result);
             }
@@ -82,14 +82,14 @@ public class MainActivity extends AppCompatActivity {
                 super.onActivityResult(requestCode, resultCode, data);
                 int val = data.getIntExtra("code", 0);
                 if (val == 0) {
-                    subscriptionList.remove(modify_sub);
+                    subscriptionList.remove(modifySub);
                 }
                 else {
                     Subscription edited_sub = (Subscription) data.getExtras().getSerializable("editedsub");
-                    modify_sub.setName(edited_sub.getName());
-                    modify_sub.setDate(edited_sub.getDate());
-                    modify_sub.setCharge(edited_sub.getCharge());
-                    modify_sub.setComment(edited_sub.getComment());
+                    modifySub.setName(edited_sub.getName());
+                    modifySub.setDate(edited_sub.getDate());
+                    modifySub.setCharge(edited_sub.getCharge());
+                    modifySub.setComment(edited_sub.getComment());
                 }
                 adapter.notifyDataSetChanged();
                 appFile.saveInFile(subscriptionList);
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     private void setTotalCharge() {
         double totalCharge = 0.00;
         for (int i = 0; i < subscriptionList.size(); i++) {
-            totalCharge += Double.parseDouble(subscriptionList.get(i).getCharge());
+            totalCharge += subscriptionList.get(i).getCharge();
         }
         TextView text = (TextView) findViewById(R.id.mainTotalCharge);
         String output = String.format("%.2f", totalCharge);

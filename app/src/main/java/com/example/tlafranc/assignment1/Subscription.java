@@ -1,6 +1,7 @@
 package com.example.tlafranc.assignment1;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,11 +13,11 @@ import java.util.jar.Attributes;
 
 class Subscription implements Serializable{
     private String name;
-    private String date;
-    private String charge;
+    private LocalDate date;
+    private Float charge;
     private String comment;
 
-    public Subscription(String name, String date, String charge, String comment) {
+    public Subscription(String name, LocalDate date, Float charge, String comment) {
         this.name = name;
         this.date = date;
         this.charge = charge;
@@ -27,11 +28,11 @@ class Subscription implements Serializable{
         return name;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public String getCharge() {
+    public Float getCharge() {
         return charge;
     }
 
@@ -43,35 +44,15 @@ class Subscription implements Serializable{
         this.name = name;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public void setCharge(String charge) {
+    public void setCharge(Float charge) {
         this.charge = charge;
     }
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    /*
-    public ArrayList<String> returnStringList() {
-        ArrayList<String> retList = new ArrayList<String>();
-        retList.add(this.name);
-        retList.add(this.date);
-        retList.add(this.charge);
-        retList.add(this.comment);
-        return retList;
-    }
-
-    public Subscription returnSubscription(ArrayList<String> subList) {
-        return Subscription()
-    }
-    */
-
-    @Override
-    public String toString(){
-        return this.name + "\nDate: " + this.date + "    Charge: $" + this.charge;
     }
 }

@@ -1,19 +1,17 @@
 package com.example.tlafranc.assignment1;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.*;
 
 public class AddSubscriptionActivity extends AppCompatActivity {
@@ -28,8 +26,6 @@ public class AddSubscriptionActivity extends AppCompatActivity {
     private String comment;
 
     private Button add;
-
-    private Context addContext = this;
 
     // https://stackoverflow.com/questions/20682865/disable-button-when-edit-text-fields-empty accessed on 2018-01-30
 
@@ -60,7 +56,12 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         charge = chargeText.getText().toString();
         comment = commentText.getText().toString();
 
-        Subscription newSub = new Subscription(name, date, charge, comment);
+        String [] dateList = date.split("-");
+
+        LocalDate dateObj = LocalDate.of(Integer.parseInt(dateList[0]), Integer.parseInt(dateList[1]),
+                Integer.parseInt(dateList[2]));
+
+        Subscription newSub = new Subscription(name, dateObj, Float.parseFloat(charge), comment);
 
         Intent returnSub = new Intent();
         returnSub.putExtra("Subscription", newSub);

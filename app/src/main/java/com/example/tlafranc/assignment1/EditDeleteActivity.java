@@ -8,6 +8,8 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.time.LocalDate;
 import java.util.regex.*;
 
 public class EditDeleteActivity extends AppCompatActivity {
@@ -44,8 +46,8 @@ public class EditDeleteActivity extends AppCompatActivity {
         sub = (Subscription) eddelIntent.getSerializableExtra("subObj");
 
         nameText.setText(sub.getName());
-        dateText.setText(sub.getDate());
-        chargeText.setText(sub.getCharge());
+        dateText.setText(sub.getDate().toString());
+        chargeText.setText(Float.toString(sub.getCharge()));
         commentText.setText(sub.getComment());
 
         nameText.addTextChangedListener(textWatcher);
@@ -60,9 +62,14 @@ public class EditDeleteActivity extends AppCompatActivity {
         charge = chargeText.getText().toString();
         comment = commentText.getText().toString();
 
+        String [] dateList = date.split("-");
+
+        LocalDate dateObj = LocalDate.of(Integer.parseInt(dateList[0]), Integer.parseInt(dateList[1]),
+                Integer.parseInt(dateList[2]));
+
         sub.setName(name);
-        sub.setDate(date);
-        sub.setCharge(charge);
+        sub.setDate(dateObj);
+        sub.setCharge(Float.parseFloat(charge));
         sub.setComment(comment);
 
         Intent returnSub = new Intent();

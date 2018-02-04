@@ -22,7 +22,6 @@ public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
 
     }
 
-
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -33,10 +32,10 @@ public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
         nameText.setText(sub.getName());
 
         TextView dateText = (TextView) view.findViewById(R.id.listViewDate);
-        dateText.setText(sub.getDate());
+        dateText.setText(sub.getDate().toString());
 
         TextView chargeText = (TextView) view.findViewById(R.id.listViewCharge);
-        String output = String.format("$%.2f", Double.parseDouble(sub.getCharge()));
+        String output = String.format("$%.2f", sub.getCharge());
         chargeText.setText(output);
 
         TextView commentText = (TextView) view.findViewById(R.id.listViewComment);
