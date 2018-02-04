@@ -1,17 +1,40 @@
+/*
+ *     <This program is a SubBook application that keeps a log of a users subscriptions.>
+ *     Copyright (C) <2018>  <Thomas Lafrance>
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.example.tlafranc.assignment1;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import java.time.LocalDate;
-import java.util.regex.*;
 
+/**
+ * Activity that edits or deletes a subscription. Is called by MainActivity when the user presses
+ * the taps on any of the subscriptions in the ListView in MainActivity. Utilizes
+ * SubscriptionWatcher in order to ensure the user input is legal.
+ *
+ * @author tlafranc
+ * @see SubscriptionWatcher
+ */
 public class EditDeleteActivity extends AppCompatActivity {
 
     private EditText nameText;
@@ -25,7 +48,15 @@ public class EditDeleteActivity extends AppCompatActivity {
 
     private Button edit;
     private Subscription sub;
+    private SubscriptionWatcher boxWatcher;
 
+    /**
+     * Called when activity is started. Initializes the back button on the action bar, nameText,
+     * chargeText, dateText, commentText, edit button and the boxWatcher. Sets the nameText,
+     * dateText, chargeText and commentText fields to be the values corresponding to the
+     * subscription clicked on in the ListView in MainActivity.
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +81,21 @@ public class EditDeleteActivity extends AppCompatActivity {
         chargeText.setText(Float.toString(sub.getCharge()));
         commentText.setText(sub.getComment());
 
-        nameText.addTextChangedListener(textWatcher);
-        dateText.addTextChangedListener(textWatcher);
-        chargeText.addTextChangedListener(textWatcher);
-        commentText.addTextChangedListener(textWatcher);
+        boxWatcher = new SubscriptionWatcher(nameText, dateText, chargeText, commentText, edit);
+
+        nameText.addTextChangedListener(boxWatcher);
+        dateText.addTextChangedListener(boxWatcher);
+        chargeText.addTextChangedListener(boxWatcher);
+        commentText.addTextChangedListener(boxWatcher);
     }
 
+    /**
+     * Called when the user clickes on the "Edit" button in this activity. Changes the subscription
+     * object passed from MainActivity using fields nameText, dateText, chargeText and commentText.
+     * Sends a resultCode indicating that this is an edit operation as well as the changed
+     * subscription back to MainActivity.
+     *
+     */
     public void onEditClick (View view) {
         name = nameText.getText().toString();
         date = dateText.getText().toString();
@@ -79,55 +119,15 @@ public class EditDeleteActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Called when the user clickes on the "Delete" button in this activity.
+     * Sends a resultCode indicating that this is a delete operation back to MainActivity.
+     *
+     */
     public void onDeleteClick(View view) {
         Intent returnSub = new Intent();
         returnSub.putExtra("code", 0);
         setResult(RESULT_OK, returnSub);
         finish();
-    }
-
-    // https://stackoverflow.com/questions/20682865/disable-button-when-edit-text-fields-empty accessed on 2018-01-30
-
-    private TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            checkFieldsForEmptyValues();
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-        }
-    };
-
-    private void checkFieldsForEmptyValues() {
-        name = nameText.getText().toString();
-        date = dateText.getText().toString();
-        charge = chargeText.getText().toString();
-        comment = commentText.getText().toString();
-
-        Pattern datePattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
-        Matcher properDate = datePattern.matcher(date);
-
-        if (name.equals("") || date.equals("") || charge.equals("") || !properDate.matches()) {
-            edit.setEnabled(false);
-            if (name.equals("")) {
-                nameText.setError("Name cannot be left blank");
-            }
-            if (!properDate.matches()) {
-                dateText.setError("Date must be in form YYYY-MM-DD");
-            }
-            if (date.equals("")) {
-                dateText.setError("Date cannot be left blank");
-            }
-            if (charge.equals("")) {
-                chargeText.setError("Charge cannot be left blank");
-            }
-        } else {
-            edit.setEnabled(true);
-        }
     }
 }
