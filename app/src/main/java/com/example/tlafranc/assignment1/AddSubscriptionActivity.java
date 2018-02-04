@@ -27,6 +27,15 @@ import android.widget.EditText;
 
 import java.time.LocalDate;
 
+/*
+ * I used help from youtube whilst making this class. I used his ideas on how to handle multiple
+ * activities.
+ * https://www.youtube.com/watch?v=45gq0Q8GFMM&index=7&list=PLGLfVvz_LVvSPjWpLPFEfOCbezi6vATIh
+ * Accessed on 2018-01-27
+ * By user: Derek Banas
+ * Link to the code shown in the video: http://www.newthinktank.com/2014/06/make-android-apps-5/
+ */
+
 /**
  * Activity that adds a subscription. Is called by MainActivity when the user presses the "Add
  * Subscription" button from MainActivity. Utilizes SubscriptionWatcher in order to ensure the
@@ -48,8 +57,6 @@ public class AddSubscriptionActivity extends AppCompatActivity {
 
     private Button add;
     private SubscriptionWatcher boxWatcher;
-
-    // https://stackoverflow.com/questions/20682865/disable-button-when-edit-text-fields-empty accessed on 2018-01-30
 
     /**
      * Called when activity is started. Initializes the back button on the action bar, nameText,
@@ -76,7 +83,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         chargeText.addTextChangedListener(boxWatcher);
         commentText.addTextChangedListener(boxWatcher);
 
-        boxWatcher.checkFieldsForEmptyValues();
+        boxWatcher.checkFieldsForIllegalEntry();
     }
 
     /**
@@ -93,8 +100,8 @@ public class AddSubscriptionActivity extends AppCompatActivity {
 
         String [] dateList = date.split("-");
 
-        LocalDate dateObj = LocalDate.of(Integer.parseInt(dateList[0]), Integer.parseInt(dateList[1]),
-                Integer.parseInt(dateList[2]));
+        LocalDate dateObj = LocalDate.of(Integer.parseInt(dateList[0]),
+                Integer.parseInt(dateList[1]), Integer.parseInt(dateList[2]));
 
         Subscription newSub = new Subscription(name, dateObj, Float.parseFloat(charge), comment);
 

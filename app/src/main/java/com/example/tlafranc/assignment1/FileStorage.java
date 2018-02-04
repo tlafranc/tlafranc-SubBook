@@ -61,6 +61,14 @@ public class FileStorage {
         this.mainContext = mainContext;
     }
 
+
+    /*
+     * The functions loadFromFile() and saveInFile() were taken from the lonelyTwitter git
+     * repository that we worked on in the third week of labs in CMPUT 301.
+     * https://github.com/tlafranc/lonelyTwitter
+     * By user: tlafranc
+     * Forked from: https://github.com/joshua2ua/lonelyTwitter
+     */
     /**
      * This method loads the subscription list saved in file and returns it back to MainActivity.
      *
@@ -74,8 +82,12 @@ public class FileStorage {
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             Gson gson = new Gson();
 
-            // Taken https://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
-            // 2018-01-24
+            /*
+             * Stackoverflow code on gson to json for an arrayList
+             * https://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
+             * Accessed on 2018-01-24
+             * By user: https://stackoverflow.com/users/20634/alex
+             */
 
             Type listType = new TypeToken<ArrayList<Subscription>>(){}.getType();
 

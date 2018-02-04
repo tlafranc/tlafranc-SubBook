@@ -33,6 +33,14 @@ import java.util.ArrayList;
  * Created by Thomas on 2018-02-01.
  */
 
+/*
+ * I used youtube in order to understand how to implement my own adapter
+ * https://www.youtube.com/watch?v=rhj4_KBD6BQ&list=PLGLfVvz_LVvSPjWpLPFEfOCbezi6vATIh&index=5
+ * Accessed on 2018-01-29
+ * By user: Derek Banas
+ * Link to code shown in video: http://www.newthinktank.com/2014/06/make-android-apps-3/
+ */
+
 /**
  * My version of an adapter utilized for the Subscription objects. This adapter sets the layout of
  * each subscription in the subscriptionList to be the layout from list_item.xml

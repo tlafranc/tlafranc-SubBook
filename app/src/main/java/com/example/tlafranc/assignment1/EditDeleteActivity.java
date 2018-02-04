@@ -27,6 +27,16 @@ import android.widget.EditText;
 
 import java.time.LocalDate;
 
+/*
+ * I used help from youtube whilst making this class. While I did not copy any code from this
+ * user, I did use his ideas on how to handling multiple activities.
+ * https://www.youtube.com/watch?v=45gq0Q8GFMM&index=7&list=PLGLfVvz_LVvSPjWpLPFEfOCbezi6vATIh
+ * Accessed on 2018-01-27
+ * By user: Derek Banas
+ * Link to the code shown in the video: http://www.newthinktank.com/2014/06/make-android-apps-5/
+ */
+
+
 /**
  * Activity that edits or deletes a subscription. Is called by MainActivity when the user presses
  * the taps on any of the subscriptions in the ListView in MainActivity. Utilizes
@@ -70,7 +80,13 @@ public class EditDeleteActivity extends AppCompatActivity {
         chargeText = (EditText) findViewById(R.id.eddel_charge);
         commentText = (EditText) findViewById(R.id.eddel_comment);
 
-        // https://stackoverflow.com/questions/17453297/passing-arraylist-of-string-arrays-from-one-activity-to-another-in-android accessed on 2018-01-29
+    /*
+     * I used help from stackoverflow in order to learn how to pass an object that I've created
+     * between activities.
+     * https://stackoverflow.com/questions/2736389/how-to-pass-an-object-from-one-activity-to-another-on-android
+     * Accessed on: 2018-01-29
+     * By user: https://stackoverflow.com/users/236128/samuh
+     */
 
         Intent eddelIntent = getIntent();
 

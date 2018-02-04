@@ -67,11 +67,23 @@ public class MainActivity extends AppCompatActivity {
 
         sublist = (ListView) findViewById(R.id.main_sub_list);
 
+        /*
+         * I used youtube in order to understand how to implement onClick for a ListView
+         * https://www.youtube.com/watch?v=rhj4_KBD6BQ&list=PLGLfVvz_LVvSPjWpLPFEfOCbezi6vATIh&index=5
+         * Accessed on 2018-01-29
+         * By user: Derek Banas
+         * Linked to code shown in video: http://www.newthinktank.com/2014/06/make-android-apps-3/
+         */
+
+        /*
+         * I used code from stackoverflow to overcome a bug in my program.
+         * https://stackoverflow.com/questions/5971817/using-an-intent-in-a-list-onitemclick
+         * Accessed on 2018-01-29
+         * By user: https://stackoverflow.com/users/717927/gix
+         */
         sublist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // https://stackoverflow.com/questions/5971817/using-an-intent-in-a-list-onitemclick accessed on 2018-01-29
-
                 Intent edDelIntent = new Intent(mainContext, EditDeleteActivity.class);
                 final int result = 2;
 
@@ -82,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     /**
      * Called upon starting the activity. Ensures subscriptionList is up to date and intitializes
@@ -109,8 +120,12 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(addSubIntent, result);
     }
 
-    // https://stackoverflow.com/questions/5030565/multiple-onactivityresult-for-1-activity accessed on 2018-01-29
-
+    /*
+     * I used code from stackoverflow in order to learn how to distinguish between two onActivityResults
+     * https://stackoverflow.com/questions/5030565/multiple-onactivityresult-for-1-activity
+     * Accessed on 2018-01-29
+     * By user: https://stackoverflow.com/users/603059/thame90
+     */
     /**
      * Called upon completion of AddSubscriptionActivity or EditDeleteActivity. If the result
      * is coming from AddSubscriptionActivity, add this subscription to the subscriptionList

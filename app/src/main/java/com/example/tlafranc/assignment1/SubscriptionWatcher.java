@@ -30,6 +30,13 @@ import java.util.regex.Pattern;
  * Created by Thomas on 2018-02-04.
  */
 
+/*
+ * I used help from stackoverflow to have an idea on how to go about disabling a button.
+ * https://stackoverflow.com/questions/20682865/disable-button-when-edit-text-fields-empty
+ * Accessed on 2018-01-30
+ * By user: - https://stackoverflow.com/users/3110978/androidbeginner
+ */
+
 /**
  * Class made to determines if the entries in AddSubscriptionActivity or EditDeleteActivity are
  * legal entries (legal entries are defined by the app requirements).
@@ -86,8 +93,6 @@ public class SubscriptionWatcher implements TextWatcher {
     public void afterTextChanged(Editable editable) {
     }
 
-    // https://stackoverflow.com/questions/20682865/disable-button-when-edit-text-fields-empty accessed on 2018-01-30
-
     /**
      * Function that determines if there are any blank fields for name, date and charge as these
      * fields must be filled as specified by the requirements. Also checks to see if the date is of
@@ -121,101 +126,3 @@ public class SubscriptionWatcher implements TextWatcher {
         }
     }
 }
-
-
-/*
-Add Subscription
-    // https://stackoverflow.com/questions/20682865/disable-button-when-edit-text-fields-empty accessed on 2018-01-30
-
-    private TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            checkFieldsForEmptyValues();
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-        }
-    };
-
-    private void checkFieldsForEmptyValues() {
-        name = nameText.getText().toString();
-        date = dateText.getText().toString();
-        charge = chargeText.getText().toString();
-        comment = commentText.getText().toString();
-
-        Pattern datePattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
-        Matcher properDate = datePattern.matcher(date);
-
-        if (name.equals("") || date.equals("") || charge.equals("") || !properDate.matches()) {
-            add.setEnabled(false);
-            if (name.equals("")) {
-                nameText.setError("Name cannot be left blank");
-            }
-            if (!properDate.matches()) {
-                dateText.setError("Date must be in form YYYY-MM-DD");
-            }
-            if (date.equals("")) {
-                dateText.setError("Date cannot be left blank");
-            }
-            if (charge.equals("")) {
-                chargeText.setError("Charge cannot be left blank");
-            }
-        }
-        else {
-            add.setEnabled(true);
-        }
-    }
- */
-
-/*
-Edit Subscription
-    // https://stackoverflow.com/questions/20682865/disable-button-when-edit-text-fields-empty accessed on 2018-01-30
-
-    private TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            checkFieldsForEmptyValues();
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-        }
-    };
-
-    private void checkFieldsForEmptyValues() {
-        name = nameText.getText().toString();
-        date = dateText.getText().toString();
-        charge = chargeText.getText().toString();
-        comment = commentText.getText().toString();
-
-        Pattern datePattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
-        Matcher properDate = datePattern.matcher(date);
-
-        if (name.equals("") || date.equals("") || charge.equals("") || !properDate.matches()) {
-            edit.setEnabled(false);
-            if (name.equals("")) {
-                nameText.setError("Name cannot be left blank");
-            }
-            if (!properDate.matches()) {
-                dateText.setError("Date must be in form YYYY-MM-DD");
-            }
-            if (date.equals("")) {
-                dateText.setError("Date cannot be left blank");
-            }
-            if (charge.equals("")) {
-                chargeText.setError("Charge cannot be left blank");
-            }
-        } else {
-            edit.setEnabled(true);
-        }
-    }
- */

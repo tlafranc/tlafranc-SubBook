@@ -5,24 +5,24 @@
     build-mode="COLD"
     density="420dpi"
     format="10"
-    ir-eligibility="COMPATIBLE"
+    ir-eligibility="METHOD_DELETED"
     plugin-version="3.0.1"
-    timestamp="1517779304969"
+    timestamp="1517785028013"
     token="3941638919088380239"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="636" />
+        duration="1526" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="292" />
+        duration="104" />
     <task
         name="verifier"
-        duration="99" />
+        duration="15" />
 
     <artifact
         location="C:\Users\Thomas Lafrance\Documents\AndroidStudioProjects\tlafranc-SubBook\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
@@ -72,8 +72,8 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1517779304969"
+        ir-eligibility="METHOD_DELETED"
+        timestamp="1517785028013"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\Thomas Lafrance\Documents\AndroidStudioProjects\tlafranc-SubBook\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
