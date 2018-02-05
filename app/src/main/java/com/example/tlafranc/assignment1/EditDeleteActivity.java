@@ -94,7 +94,8 @@ public class EditDeleteActivity extends AppCompatActivity {
 
         nameText.setText(sub.getName());
         dateText.setText(sub.getDate().toString());
-        chargeText.setText(Float.toString(sub.getCharge()));
+        String output = String.format("%.2f", sub.getCharge());
+        chargeText.setText(output);
         commentText.setText(sub.getComment());
 
         boxWatcher = new SubscriptionWatcher(nameText, dateText, chargeText, commentText, edit);
