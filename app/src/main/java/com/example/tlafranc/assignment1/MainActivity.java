@@ -139,33 +139,33 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case 1:
-                super.onActivityResult(requestCode, resultCode, data);
-                Subscription newsub = (Subscription) data.getExtras().getSerializable("Subscription");
+        if (resultCode == -1) {
+            switch (requestCode) {
+                case 1:
+                    super.onActivityResult(requestCode, resultCode, data);
+                    Subscription newsub = (Subscription) data.getExtras().getSerializable("Subscription");
 
-                subscriptionList.add(newsub);
-                adapter.notifyDataSetChanged();
-                appFile.saveInFile(subscriptionList);
-                break;
-            case 2:
-                super.onActivityResult(requestCode, resultCode, data);
-                int val = data.getIntExtra("code", 0);
-                if (val == 0) {
-                    subscriptionList.remove(modifySub);
-                }
-                else {
-                    Subscription edited_sub = (Subscription) data.getExtras().getSerializable("editedsub");
-                    modifySub.setName(edited_sub.getName());
-                    modifySub.setDate(edited_sub.getDate());
-                    modifySub.setCharge(edited_sub.getCharge());
-                    modifySub.setComment(edited_sub.getComment());
-                }
-                adapter.notifyDataSetChanged();
-                appFile.saveInFile(subscriptionList);
-                break;
+                    subscriptionList.add(newsub);
+                    adapter.notifyDataSetChanged();
+                    appFile.saveInFile(subscriptionList);
+                    break;
+                case 2:
+                    super.onActivityResult(requestCode, resultCode, data);
+                    int val = data.getIntExtra("code", 0);
+                    if (val == 0) {
+                        subscriptionList.remove(modifySub);
+                    } else {
+                        Subscription edited_sub = (Subscription) data.getExtras().getSerializable("editedsub");
+                        modifySub.setName(edited_sub.getName());
+                        modifySub.setDate(edited_sub.getDate());
+                        modifySub.setCharge(edited_sub.getCharge());
+                        modifySub.setComment(edited_sub.getComment());
+                    }
+                    adapter.notifyDataSetChanged();
+                    appFile.saveInFile(subscriptionList);
+                    break;
+            }
         }
-
     }
 
     /**
