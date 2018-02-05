@@ -93,33 +93,66 @@ public class SubscriptionWatcher implements TextWatcher {
     /**
      * Function that determines if there are any blank fields for name, date and charge as these
      * fields must be filled as specified by the requirements. Also checks to see if the date is of
-     * form YYYY-MM-DD
+     * form YYYY-MM-DD and utilizes checkLegalDate to determine if the date exits.
      */
     public void checkFieldsForIllegalEntry() {
         String name = nameText.getText().toString();
         String date = dateText.getText().toString();
         String charge = chargeText.getText().toString();
 
-        Pattern datePattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+        Pattern datePattern = Pattern.compile("\\d{4}-(\\d{2})-(\\d{2})");
         Matcher properDate = datePattern.matcher(date);
 
-        if (name.equals("") || date.equals("") || charge.equals("") || !properDate.matches()) {
+        confirm.setEnabled(true);
+
+        if (!properDate.matches()) {
             confirm.setEnabled(false);
-            if (name.equals("")) {
-                nameText.setError("Name cannot be left blank");
-            }
-            if (!properDate.matches()) {
-                dateText.setError("Date must be in form YYYY-MM-DD");
-            }
-            if (date.equals("")) {
-                dateText.setError("Date cannot be left blank");
-            }
-            if (charge.equals("")) {
-                chargeText.setError("Charge cannot be left blank");
-            }
+            dateText.setError("Date must be in form YYYY-MM-DD");
         }
         else {
-            confirm.setEnabled(true);
+            boolean result = checkLegalDate(Integer.parseInt(properDate.group(1)),
+                    Integer.parseInt(properDate.group(2)));
+            if (!result) {
+                confirm.setEnabled(false);
+                dateText.setError("Date does not exist. Form must be YYYY-MM-DD");
+            }
+        }
+
+        if (name.equals("")) {
+            confirm.setEnabled(false);
+            nameText.setError("Name cannot be left blank");
+        }
+        if (date.equals("")) {
+            confirm.setEnabled(false);
+            dateText.setError("Date cannot be left blank");
+        }
+        if (charge.equals("")) {
+            confirm.setEnabled(false);
+            chargeText.setError("Charge cannot be left blank");
         }
     }
+
+    /**
+     * Function used by checkForIllegalEntry to determine if the date given is actually a real
+     * date (e.g. Decemember 40th is not a real date). Assumes that no subscriptions are made
+     * on leap day (February 29 is a day every 4 years).
+     *
+     * @param month Integer represents the month where 1 = January and 12 = December
+     * @param day Integer representing the day
+     * @return Returns true if the date is valid and false otherwise
+     */
+    private boolean checkLegalDate(int month, int day) {
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 ||
+                month == 12) {
+            return day > 0 && day <= 31;
+        }
+        else if (month == 2) {
+            return day > 0 && day <= 28;
+        }
+        else if (month == 4 || month == 6 || month == 9 || month == 11) {
+            return day > 0 && day <= 30;
+        }
+        else return false;
+    }
+
 }

@@ -26,11 +26,12 @@ import java.util.List;
 import java.util.jar.Attributes;
 
 /**
- * Represents a subscription/
+ * Represents a subscription
  *
  * @author tlafranc
  */
-class Subscription implements Serializable{
+public class Subscription implements Serializable{
+
     private String name;
     private LocalDate date;
     private float charge;

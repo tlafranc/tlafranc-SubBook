@@ -36,12 +36,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/mainSummary"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/mainTotalCharge"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
         android:id="@+id/mainTotalCharge"
@@ -49,7 +50,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="29dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_weight="1"
         android:textColor="@android:color/black"
         android:textSize="18sp"
