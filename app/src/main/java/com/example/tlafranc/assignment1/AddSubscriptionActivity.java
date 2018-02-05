@@ -60,6 +60,12 @@ public class AddSubscriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_subscription);
+        /*
+         * I used youtube to figure out how to put a back button on the action bar.
+         * https://www.youtube.com/watch?v=6rMQ7vBE-CU
+         * Accessed on 2018-02-03
+         * By user: Priya Kamble
+         */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button add = (Button) findViewById(R.id.add_complete_button);
@@ -81,9 +87,10 @@ public class AddSubscriptionActivity extends AppCompatActivity {
     }
 
     /**
-     * Called when the user clickes on the "Add" button in this activity. Creates a subscription
+     * Called when the user clicks on the "Add" button in this activity. Creates a subscription
      * object from the fields nameText, dateText, chargeText and commentText and then sends this
-     * subscription back to MainActivity.
+     * subscription back to MainActivity. The boxWatcher ensures that all the required fields
+     * are valid and filled.
      *
      */
     public void onAddClick(View view) {

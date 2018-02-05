@@ -28,12 +28,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
- * MainActivity class. Called upon starting the application. Makes calls to AddSubscriptionActivity
- * and EditDeleteActivity in order to manage the subscriptions of the user. Utilizes the FileStorage
- * class to save the subscriptions in file to achieve persistence. Utilizes SubscriptionAdapter
- * class to display the subscriptions in a ListView.
+ * MainActivity class that is called upon starting the application. Makes calls to
+ * AddSubscriptionActivity and EditDeleteActivity in order to manage the subscriptions of the user.
+ * Utilizes the FileStorage class to save the subscriptions in file to achieve persistence.
+ * Utilizes SubscriptionAdapter class to display the subscriptions in a ListView.
  *
  * @author tlafranc
  * @see Subscription
@@ -46,11 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
     private FileStorage appFile;
     private ListView sublist;
-
     private Context mainContext = this;
     private ArrayList<Subscription> subscriptionList;
     private SubscriptionAdapter adapter;
-
     private Subscription modifySub;
 
     /**
@@ -74,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
          * By user: Derek Banas
          * Linked to code shown in video: http://www.newthinktank.com/2014/06/make-android-apps-3/
          */
-
         /*
-         * I used code from stackoverflow to overcome a bug in my program.
+         * I used code from stackoverflow to overcome a bug in my program where I needed to pass
+         * the context of the MainActivity but I was getting an error.
          * https://stackoverflow.com/questions/5971817/using-an-intent-in-a-list-onitemclick
          * Accessed on 2018-01-29
          * By user: https://stackoverflow.com/users/717927/gix
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Called upon starting the activity. Ensures subscriptionList is up to date and intitializes
+     * Called upon starting the activity. Ensures subscriptionList is up to date and inititializes
      * the adapter in order to display the subscriptionList in the ListView.
      *
      */
@@ -110,7 +109,8 @@ public class MainActivity extends AppCompatActivity {
         setTotalCharge();
     }
 
-    /** Called when the user taps the "Add a Subscription" button. Calls the
+    /**
+     * Called when the user taps the "Add a Subscription" button. Calls the
      * AddSubscriptionActivity.
      *
      */
@@ -131,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
      * is coming from AddSubscriptionActivity, add this subscription to the subscriptionList
      * and save it in file. If the result is coming from EditDeleteActivity, determine whether
      * it was an edit or delete button that was pressed and do the corresponding operation. For an
-     * edit button press, update the subscription that was sent to the activity. For a delete button
-     * press, remove this subscription from the ArrayList. Save the changes in file.
+     * edit button press, update the subscription that was sent to the EditDelete activity. For a
+     * delete button press, remove this subscription from the ArrayList. Save the changes in file.
      *
      * @param requestCode Code sent with activity
      * @param data Information sent back from activity
@@ -179,7 +179,8 @@ public class MainActivity extends AppCompatActivity {
             totalCharge += subscriptionList.get(i).getCharge();
         }
         TextView text = (TextView) findViewById(R.id.mainTotalCharge);
-        String output = String.format("%.2f", totalCharge);
-        text.setText("Total Monthly Charge: $" + output);
+        String output = String.format(Locale.CANADA, "Total Monthly Charge: $%.2f",
+                totalCharge);
+        text.setText(output);
     }
 }

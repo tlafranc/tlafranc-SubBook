@@ -29,8 +29,8 @@ import java.time.LocalDate;
 import java.util.Locale;
 
 /*
- * I used help from youtube whilst making this class. While I did not copy any code from this
- * user, I did use his ideas on how to handling multiple activities.
+ * I used help from youtube whilst making this class. I used his ideas on how to hande multiple
+ * activities.
  * https://www.youtube.com/watch?v=45gq0Q8GFMM&index=7&list=PLGLfVvz_LVvSPjWpLPFEfOCbezi6vATIh
  * Accessed on 2018-01-27
  * By user: Derek Banas
@@ -52,14 +52,15 @@ public class EditDeleteActivity extends AppCompatActivity {
     private EditText dateText;
     private EditText chargeText;
     private EditText commentText;
-
     private Subscription sub;
 
     /**
      * Called when activity is started. Initializes the back button on the action bar, nameText,
      * chargeText, dateText, commentText, edit button and the boxWatcher. Sets the nameText,
      * dateText, chargeText and commentText fields to be the values corresponding to the
-     * subscription clicked on in the ListView in MainActivity.
+     * subscription clicked on in the ListView in MainActivity by retrieving the subscription
+     * object that is being passed from MainActivity. Assigns a subscription object to point to
+     * the subscription object that is being passed.
      *
      */
     @Override
@@ -82,15 +83,14 @@ public class EditDeleteActivity extends AppCompatActivity {
      * Accessed on: 2018-01-29
      * By user: https://stackoverflow.com/users/236128/samuh
      */
-
         Intent eddelIntent = getIntent();
 
         sub = (Subscription) eddelIntent.getSerializableExtra("subObj");
 
         nameText.setText(sub.getName());
         dateText.setText(sub.getDate().toString());
-        String output = String.format(Locale.CANADA, "%.2f", sub.getCharge());
-        chargeText.setText(output);
+        String chargeDisplay = String.format(Locale.CANADA, "%.2f", sub.getCharge());
+        chargeText.setText(chargeDisplay);
         commentText.setText(sub.getComment());
 
         SubscriptionWatcher boxWatcher = new SubscriptionWatcher(nameText, dateText, chargeText,
@@ -104,9 +104,10 @@ public class EditDeleteActivity extends AppCompatActivity {
 
     /**
      * Called when the user clickes on the "Edit" button in this activity. Changes the subscription
-     * object passed from MainActivity using fields nameText, dateText, chargeText and commentText.
-     * Sends a resultCode indicating that this is an edit operation as well as the changed
-     * subscription back to MainActivity.
+     * object passed from MainActivity using fields nameText, dateText, chargeText and commentText
+     * and passes this object back to MainActivity. Sends a resultCode indicating that this is an
+     * edit operation.The boxWatcher ensures the fields are not empty and that the values inside of
+     * them are valid.
      *
      */
     public void onEditClick (View view) {

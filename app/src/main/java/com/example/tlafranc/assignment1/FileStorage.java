@@ -101,7 +101,7 @@ public class FileStorage {
     }
 
     /**
-     * This function saves the subscription list in file that MainActivity passes to it.
+     * This function saves the subscription list that MainActivity passes to it in file.
      *
      * @param subscriptionList The subscriptionList in MainActivity.
      * @throws FileNotFoundException thrown if file is not found

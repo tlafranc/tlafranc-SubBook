@@ -39,7 +39,12 @@ import java.util.regex.Pattern;
 
 /**
  * Class made to determines if the entries in AddSubscriptionActivity or EditDeleteActivity are
- * legal entries (legal entries are defined by the app requirements).
+ * legal entries as defined by app requirements including:
+ * name is not empty
+ * date is not empty
+ * charge is not empty
+ * charge is nonnegative (handled by layouts)
+ * date is a valid date
  *
  * @author tlafranc
  */
@@ -93,7 +98,7 @@ public class SubscriptionWatcher implements TextWatcher {
     /**
      * Function that determines if there are any blank fields for name, date and charge as these
      * fields must be filled as specified by the requirements. Also checks to see if the date is of
-     * form YYYY-MM-DD and utilizes checkLegalDate to determine if the date exits.
+     * form YYYY-MM-DD and utilizes checkLegalDate to determine if the date is a valid date.
      */
     public void checkFieldsForIllegalEntry() {
         String name = nameText.getText().toString();
@@ -104,7 +109,6 @@ public class SubscriptionWatcher implements TextWatcher {
         Matcher properDate = datePattern.matcher(date);
 
         confirm.setEnabled(true);
-
         if (!properDate.matches()) {
             confirm.setEnabled(false);
             dateText.setError("Date must be in form YYYY-MM-DD");
@@ -117,16 +121,15 @@ public class SubscriptionWatcher implements TextWatcher {
                 dateText.setError("Date does not exist. Form must be YYYY-MM-DD");
             }
         }
-
-        if (name.equals("")) {
+        if (name.trim().equals("")) {
             confirm.setEnabled(false);
             nameText.setError("Name cannot be left blank");
         }
-        if (date.equals("")) {
+        if (date.trim().equals("")) {
             confirm.setEnabled(false);
             dateText.setError("Date cannot be left blank");
         }
-        if (charge.equals("")) {
+        if (charge.trim().equals("")) {
             confirm.setEnabled(false);
             chargeText.setError("Charge cannot be left blank");
         }
@@ -135,7 +138,7 @@ public class SubscriptionWatcher implements TextWatcher {
     /**
      * Function used by checkForIllegalEntry to determine if the date given is actually a real
      * date (e.g. Decemember 40th is not a real date). Assumes that no subscriptions are made
-     * on leap day (February 29 is a day every 4 years).
+     * on leap day (February 29 is a day every 4 years but my algorithm does not recognize this).
      *
      * @param month Integer represents the month where 1 = January and 12 = December
      * @param day Integer representing the day
