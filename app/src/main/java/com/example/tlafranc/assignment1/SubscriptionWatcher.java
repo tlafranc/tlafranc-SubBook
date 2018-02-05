@@ -48,7 +48,6 @@ public class SubscriptionWatcher implements TextWatcher {
     private EditText nameText;
     private EditText dateText;
     private EditText chargeText;
-    private EditText commentText;
     private Button confirm;
 
 
@@ -58,15 +57,13 @@ public class SubscriptionWatcher implements TextWatcher {
      * @param nameText EditText object where the name of the subscription goes
      * @param dateText EditText object where the date of the subscription goes
      * @param chargeText EditText object where the charge of the subscription goes
-     * @param commentText EditText object where the comment of the subscription goes
      * @param confirm Button object that needs to be disabled if there are some illegal entries
      */
     public SubscriptionWatcher(EditText nameText, EditText dateText, EditText chargeText,
-                                    EditText commentText, Button confirm){
+                               Button confirm){
         this.nameText = nameText;
         this.dateText = dateText;
         this.chargeText = chargeText;
-        this.commentText = commentText;
         this.confirm = confirm;
     }
 

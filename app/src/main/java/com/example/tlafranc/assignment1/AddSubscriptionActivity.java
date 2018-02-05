@@ -47,16 +47,9 @@ import java.time.LocalDate;
 public class AddSubscriptionActivity extends AppCompatActivity {
 
     private EditText nameText;
-    private String name;
     private EditText dateText;
-    private String date;
     private EditText chargeText;
-    private String charge;
     private EditText commentText;
-    private String comment;
-
-    private Button add;
-    private SubscriptionWatcher boxWatcher;
 
     /**
      * Called when activity is started. Initializes the back button on the action bar, nameText,
@@ -69,14 +62,15 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_subscription);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        add = (Button) findViewById(R.id.add_complete_button);
+        Button add = (Button) findViewById(R.id.add_complete_button);
 
         nameText = (EditText) findViewById(R.id.add_sub_name);
         dateText = (EditText) findViewById(R.id.add_sub_date);
         chargeText = (EditText) findViewById(R.id.add_sub_charge);
         commentText = (EditText) findViewById(R.id.add_sub_comment);
 
-        boxWatcher = new SubscriptionWatcher(nameText, dateText, chargeText, commentText, add);
+        SubscriptionWatcher boxWatcher = new SubscriptionWatcher(nameText, dateText, chargeText,
+                add);
 
         nameText.addTextChangedListener(boxWatcher);
         dateText.addTextChangedListener(boxWatcher);
@@ -93,10 +87,10 @@ public class AddSubscriptionActivity extends AppCompatActivity {
      *
      */
     public void onAddClick(View view) {
-        name = nameText.getText().toString();
-        date = dateText.getText().toString();
-        charge = chargeText.getText().toString();
-        comment = commentText.getText().toString();
+        String name = nameText.getText().toString();
+        String date = dateText.getText().toString();
+        String charge = chargeText.getText().toString();
+        String comment = commentText.getText().toString();
 
         String [] dateList = date.split("-");
 

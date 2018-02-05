@@ -28,10 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-
-/**
- * Created by Thomas on 2018-02-01.
- */
+import java.util.Locale;
 
 /*
  * I used youtube in order to understand how to implement my own adapter
@@ -82,7 +79,7 @@ public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
         dateText.setText(sub.getDate().toString());
 
         TextView chargeText = (TextView) view.findViewById(R.id.listViewCharge);
-        String output = String.format("$%.2f", sub.getCharge());
+        String output = String.format(Locale.CANADA, "$%.2f", sub.getCharge());
         chargeText.setText(output);
 
         TextView commentText = (TextView) view.findViewById(R.id.listViewComment);

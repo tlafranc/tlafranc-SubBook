@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.time.LocalDate;
+import java.util.Locale;
 
 /*
  * I used help from youtube whilst making this class. While I did not copy any code from this
@@ -38,8 +39,8 @@ import java.time.LocalDate;
 
 
 /**
- * Activity that edits or deletes a subscription. Is called by MainActivity when the user presses
- * the taps on any of the subscriptions in the ListView in MainActivity. Utilizes
+ * Activity that edits or deletes a subscription. Is called by MainActivity when the user
+ * taps on any of the subscriptions in the ListView in MainActivity. Utilizes
  * SubscriptionWatcher in order to ensure the user input is legal.
  *
  * @author tlafranc
@@ -48,17 +49,11 @@ import java.time.LocalDate;
 public class EditDeleteActivity extends AppCompatActivity {
 
     private EditText nameText;
-    private String name;
     private EditText dateText;
-    private String date;
     private EditText chargeText;
-    private String charge;
     private EditText commentText;
-    private String comment;
 
-    private Button edit;
     private Subscription sub;
-    private SubscriptionWatcher boxWatcher;
 
     /**
      * Called when activity is started. Initializes the back button on the action bar, nameText,
@@ -73,7 +68,7 @@ public class EditDeleteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_delete);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        edit = (Button) findViewById(R.id.eddel_edit);
+        Button edit = (Button) findViewById(R.id.eddel_edit);
 
         nameText = (EditText) findViewById(R.id.eddel_name);
         dateText = (EditText) findViewById(R.id.eddel_date);
@@ -94,11 +89,12 @@ public class EditDeleteActivity extends AppCompatActivity {
 
         nameText.setText(sub.getName());
         dateText.setText(sub.getDate().toString());
-        String output = String.format("%.2f", sub.getCharge());
+        String output = String.format(Locale.CANADA, "%.2f", sub.getCharge());
         chargeText.setText(output);
         commentText.setText(sub.getComment());
 
-        boxWatcher = new SubscriptionWatcher(nameText, dateText, chargeText, commentText, edit);
+        SubscriptionWatcher boxWatcher = new SubscriptionWatcher(nameText, dateText, chargeText,
+                edit);
 
         nameText.addTextChangedListener(boxWatcher);
         dateText.addTextChangedListener(boxWatcher);
@@ -114,10 +110,10 @@ public class EditDeleteActivity extends AppCompatActivity {
      *
      */
     public void onEditClick (View view) {
-        name = nameText.getText().toString();
-        date = dateText.getText().toString();
-        charge = chargeText.getText().toString();
-        comment = commentText.getText().toString();
+        String name = nameText.getText().toString();
+        String date = dateText.getText().toString();
+        String charge = chargeText.getText().toString();
+        String comment = commentText.getText().toString();
 
         String [] dateList = date.split("-");
 

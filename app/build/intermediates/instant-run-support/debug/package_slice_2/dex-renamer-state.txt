@@ -1,4 +1,4 @@
-#Sun Feb 04 18:03:03 MST 2018
+#Sun Feb 04 18:23:08 MST 2018
 base.0=C\:\\Users\\Thomas Lafrance\\Documents\\AndroidStudioProjects\\tlafranc-SubBook\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\2
 path.0=classes.dex
 renamed.0=classes.dex

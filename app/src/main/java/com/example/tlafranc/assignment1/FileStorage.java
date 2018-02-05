@@ -18,10 +18,6 @@
 
 package com.example.tlafranc.assignment1;
 
-/**
- * Created by Thomas on 2018-02-03.
- */
-
 import android.content.Context;
 
 import com.google.gson.Gson;

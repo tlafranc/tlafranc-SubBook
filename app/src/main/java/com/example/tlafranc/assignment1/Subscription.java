@@ -26,10 +26,6 @@ import java.util.List;
 import java.util.jar.Attributes;
 
 /**
- * Created by Thomas on 2018-01-26.
- */
-
-/**
  * Represents a subscription/
  *
  * @author tlafranc
