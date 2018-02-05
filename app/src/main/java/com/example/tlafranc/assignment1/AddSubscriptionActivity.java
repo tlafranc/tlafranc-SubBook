@@ -90,7 +90,7 @@ public class AddSubscriptionActivity extends AppCompatActivity {
      * Called when the user clicks on the "Add" button in this activity. Creates a subscription
      * object from the fields nameText, dateText, chargeText and commentText and then sends this
      * subscription back to MainActivity. The boxWatcher ensures that all the required fields
-     * are valid and filled.
+     * are valid and filled before the Add Button can be clicked.
      *
      */
     public void onAddClick(View view) {

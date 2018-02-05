@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
  * name is not empty
  * date is not empty
  * charge is not empty
- * charge is nonnegative (handled by layouts)
+ * charge is non-negative (handled by layouts of AddSubscription and EditDelete)
  * date is a valid date
  *
  * @author tlafranc
@@ -62,7 +62,7 @@ public class SubscriptionWatcher implements TextWatcher {
      * @param nameText EditText object where the name of the subscription goes
      * @param dateText EditText object where the date of the subscription goes
      * @param chargeText EditText object where the charge of the subscription goes
-     * @param confirm Button object that needs to be disabled if there are some illegal entries
+     * @param confirm Button button that needs to be disabled if there are some illegal entries
      */
     public SubscriptionWatcher(EditText nameText, EditText dateText, EditText chargeText,
                                Button confirm){

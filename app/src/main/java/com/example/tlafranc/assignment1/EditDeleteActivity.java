@@ -103,11 +103,11 @@ public class EditDeleteActivity extends AppCompatActivity {
     }
 
     /**
-     * Called when the user clickes on the "Edit" button in this activity. Changes the subscription
+     * Called when the user clicks on the "Edit" button in this activity. Changes the subscription
      * object passed from MainActivity using fields nameText, dateText, chargeText and commentText
      * and passes this object back to MainActivity. Sends a resultCode indicating that this is an
-     * edit operation.The boxWatcher ensures the fields are not empty and that the values inside of
-     * them are valid.
+     * edit operation. The boxWatcher ensures the fields are not empty and that the values inside of
+     * them are valid and filled before the Edit button can be clicked.
      *
      */
     public void onEditClick (View view) {

@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Called upon starting the activity. Ensures subscriptionList is up to date and inititializes
+     * Called upon starting the activity. Ensures subscriptionList is up to date and initializes
      * the adapter in order to display the subscriptionList in the ListView.
      *
      */
@@ -133,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
      * it was an edit or delete button that was pressed and do the corresponding operation. For an
      * edit button press, update the subscription that was sent to the EditDelete activity. For a
      * delete button press, remove this subscription from the ArrayList. Save the changes in file.
+     *
+     * If the activity was not completed (no resultCode was sent back) do nothing.
      *
      * @param requestCode Code sent with activity
      * @param data Information sent back from activity
